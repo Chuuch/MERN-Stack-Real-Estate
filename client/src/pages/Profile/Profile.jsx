@@ -19,6 +19,8 @@ import {
 	signOutUserStart,
 } from '../../redux/user/userSlice';
 
+//TODO: Add Toasts & animations for user functionalities
+
 const Profile = () => {
 	const fileRef = useRef(null);
 	const { currentUser, loading, error } = useSelector((state) => state.user);
