@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp/SignUp.jsx';
 import SignIn from './pages/SignIn/SignIn.jsx';
 import Header from './components/Header/Header.jsx';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
+import CreateListing from './pages/CreateListing/CreateListing.jsx';
 
 const App = () => {
 	return (
@@ -18,6 +19,7 @@ const App = () => {
 				<Route path="/sign-in" element={<SignIn />} />
 				<Route element={<PrivateRoute />}>
 					<Route path="/profile" element={<Profile />} />
+					<Route path="/create-listing" element={<CreateListing />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
