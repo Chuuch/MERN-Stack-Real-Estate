@@ -10,7 +10,13 @@ import {
 } from 'firebase/storage';
 import { app } from '../../config/firebase-config';
 import { useDispatch } from 'react-redux';
-import { updateUserStart, updateUserSuccess, updateUserFailure } from '../../redux/user/userSlice';
+import {
+	updateUserStart,
+	updateUserSuccess,
+	updateUserFailure,
+	deleteUserFailure,
+	deleteUserSuccess,
+} from '../../redux/user/userSlice';
 
 const Profile = () => {
 	const fileRef = useRef(null);
@@ -36,19 +42,22 @@ const Profile = () => {
 		const storageRef = ref(storage, fileName);
 		const uploadTask = uploadBytesResumable(storageRef, file);
 
-		uploadTask.on('state_changed', (snapshot) => {
-			const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-			setFilePerc(Math.round(progress));
-		},
-		(error) => {
-			setFileUploadError(true);
-		},
-		() => {
-			getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-				setFormData({ ...formData, avatar: downloadURL })
-				}
-			);
-		});
+		uploadTask.on(
+			'state_changed',
+			(snapshot) => {
+				const progress =
+					(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+				setFilePerc(Math.round(progress));
+			},
+			(error) => {
+				setFileUploadError(true);
+			},
+			() => {
+				getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+					setFormData({ ...formData, avatar: downloadURL });
+				});
+			}
+		);
 	};
 
 	const handleChange = (e) => {
@@ -56,15 +65,15 @@ const Profile = () => {
 	};
 
 	const handleSubmit = async (e) => {
-        e.preventDefault();
+		e.preventDefault();
 		try {
 			dispatch(updateUserStart());
 			const res = await fetch(`/api/user/update/${currentUser._id}`, {
 				method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(formData),
 			});
 			const data = await res.json();
 			if (data.success === false) {
@@ -76,14 +85,29 @@ const Profile = () => {
 		} catch (error) {
 			dispatch(updateUserFailure(error.message));
 		}
-    };
+	};
+
+	const handleDeleteUser = async (data) => {
+		try {
+			dispatch(deleteUserFailure());
+			const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+				method: 'DELETE',
+			});
+			const data = await res.json();
+			if (data.success === false) {
+				dispatch(deleteUserFailure(data.message));
+				return;
+			}
+			dispatch(deleteUserSuccess(data));
+		} catch (error) {
+			dispatch(deleteUserFailure(error.message));
+		}
+	};
 
 	return (
 		<div className="p-3 max-w-lg mx-auto">
 			<h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
-			<form
-			onSubmit={handleSubmit}
-			className="flex flex-col gap-4">
+			<form onSubmit={handleSubmit} className="flex flex-col gap-4">
 				<input
 					onChange={(e) => setFile(e.target.files[0])}
 					type="file"
@@ -134,20 +158,24 @@ const Profile = () => {
 					onChange={handleChange}
 				/>
 				<button
-				disabled={loading}
-				className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
-					{ loading ? 'Loading...' : 'Update' }
+					disabled={loading}
+					className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+				>
+					{loading ? 'Loading...' : 'Update'}
 				</button>
 			</form>
 			<div className="flex justify-between mt-5">
-				<span className="text-red-700 cursor-pointer">Delete Account</span>
+				<span
+					onClick={handleDeleteUser}
+					className="text-red-700 cursor-pointer"
+				>
+					Delete Account
+				</span>
 				<span className="text-red-700 cursor-pointer">Sign out</span>
 			</div>
-			<p className='text-red-700 mt-5 self-center'>
-				{error ? error : ''}
-			</p>
-			<p className='text-green-700 mt-5'>
-				{updateSuccess ? 'User is update successfully' : ''}
+			<p className="text-red-700 mt-5 self-center">{error ? error : ''}</p>
+			<p className="text-green-700 mt-5">
+				{updateSuccess ? 'User is updated successfully' : ''}
 			</p>
 		</div>
 	);
