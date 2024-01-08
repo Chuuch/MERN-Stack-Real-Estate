@@ -167,7 +167,7 @@ const Profile = () => {
   };
   return (
     <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
+      <h1 className='text-3xl font-semibold text-center my-7 dark:text-gray-400'>Profile</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input
           onChange={(e) => setFile(e.target.files[0])}
@@ -256,7 +256,7 @@ const Profile = () => {
 
       {userListings && userListings.length > 0 && (
         <div className='flex flex-col gap-4'>
-          <h1 className='text-center mt-7 text-2xl font-semibold'>
+          <h1 className='text-center mt-7 text-2xl font-semibold dark:text-gray-400'>
             Your Listings
           </h1>
           {userListings.map((listing) => (
@@ -275,7 +275,7 @@ const Profile = () => {
                 className='text-slate-700 font-semibold  hover:underline truncate flex-1'
                 to={`/listing/${listing._id}`}
               >
-                <p>{listing.name}</p>
+                <p className='dark:text-gray-400'>{listing.name}</p>
               </Link>
 
               <div className='flex flex-col item-center'>

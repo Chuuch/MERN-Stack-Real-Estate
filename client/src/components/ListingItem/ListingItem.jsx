@@ -5,7 +5,7 @@ import { MdLocationOn } from 'react-icons/md';
 
 const ListingItem = ({ listing }) => {
     return (
-        <div className='bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]'>
+        <div className='bg-whit dark:bg-gray-400 shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]'>
           <Link to={`/listing/${listing._id}`}>
             <img
               src={
@@ -25,10 +25,10 @@ const ListingItem = ({ listing }) => {
                   {listing.address}
                 </p>
               </div>
-              <p className='text-sm text-gray-600 line-clamp-2'>
+              <p className='text-sm text-slate-600 dark:text-slate-800 line-clamp-2'>
                 {listing.description}
               </p>
-              <p className='text-slate-500 mt-2 font-semibold '>
+              <p className='text-slate-500 dark:text-slate-800 mt-2 font-semibold '>
                 $
                 {listing.offer
                   ? listing.discountPrice.toLocaleString('en-US')

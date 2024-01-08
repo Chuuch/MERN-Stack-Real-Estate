@@ -43,7 +43,7 @@ const SignIn = () => {
 
 	return (
 		<div className="p-3 max-w-lg mx-auto">
-			<h1 className="text-3xl text-center font-semibold my-7">Sign in</h1>
+			<h1 className="text-3xl text-center font-semibold my-7 dark:text-gray-400">Sign in</h1>
 			<form
 				onSubmit={handleSubmit}
 				className="flex flex-col gap-4"
@@ -73,7 +73,7 @@ const SignIn = () => {
 				<OAuth />
 			</form>
 			<div className="flex gap-2 mt-5">
-				<p>Dont have an account?</p>
+				<p className='dark:text-gray-600'>Dont have an account?</p>
 				<Link className="hover:underline" to="/sign-up">
 					<span className="text-blue-700">Sign up</span>
 				</Link>
