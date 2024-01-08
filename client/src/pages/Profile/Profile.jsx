@@ -8,7 +8,7 @@ import {
 	ref,
 	uploadBytesResumable,
 } from 'firebase/storage';
-import { app } from '../../config/firebase-config';
+import { app } from '../../config/firebase-config.js';
 import { useDispatch } from 'react-redux';
 import {
 	updateUserStart,
