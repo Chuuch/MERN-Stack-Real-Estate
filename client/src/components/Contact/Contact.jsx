@@ -26,7 +26,7 @@ const Contact = ({ listing }) => {
     <>
       {landlord && (
         <div className='flex flex-col gap-2'>
-          <p>
+          <p className="dark:text-gray-400">
             Contact <span className='font-semibold'>{landlord.username}</span>{' '}
             for{' '}
             <span className='font-semibold'>{listing.name.toLowerCase()}</span>
