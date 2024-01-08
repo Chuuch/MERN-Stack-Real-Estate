@@ -45,7 +45,7 @@ const Header = () => {
 					<input
 						type="text"
 						placeholder="Search..."
-						className="bg-transparent focus:outline-none w-24 sm:w-64"
+						className="bg-transparent dark:text-slate-800 focus:outline-none w-24 sm:w-64"
 						value={searchTerm}
 						onChange={(e) => setSearchTerm(e.target.value)}
 					/>
@@ -71,7 +71,7 @@ const Header = () => {
 						src={currentUser.avatar} 
 						alt=""/>
 					) : (
-						<li className="text-slate-700 hover:underline">Sign in</li>
+						<li className="text-slate-700 dark:text-gray-400 hover:underline">Sign in</li>
 					)}
 					</Link>
 					<DarkModeToggle />
