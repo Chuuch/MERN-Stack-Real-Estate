@@ -25,7 +25,6 @@ const SignIn = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-		timeout: 30000,
       });
       const data = await res.json();
       console.log(data);
