@@ -31,7 +31,6 @@ const Header = () => {
 		<header className="bg-slate-200 dark:bg-gray-700 shadow-md">
 			<div className="flex justify-between items-center max-w-6xl mx-auto p-3">
 				<Link to="/" className="flex flex-row items-center">
-					{/* <img src='./logo.png' alt='logo' className='w-10'/> */}
 					<TbHomeSearch size={32} className="text-gray-500" />
 					<h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
 						<span className="text-slate-500">Home</span>
@@ -69,7 +68,7 @@ const Header = () => {
 						<img
 						className='rounded-full h-7 w-7 object-cover' 
 						src={currentUser.avatar} 
-						alt=""/>
+						alt="profile"/>
 					) : (
 						<li className="text-slate-700 dark:text-gray-400 hover:underline">Sign in</li>
 					)}
