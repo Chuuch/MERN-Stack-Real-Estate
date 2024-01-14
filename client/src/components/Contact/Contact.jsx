@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
-const Contact = ({ listing }) => {
-    const [landlord, setLandlord] = useState(null);
+export default function Contact({ listing }) {
+  const [landlord, setLandlord] = useState(null);
   const [message, setMessage] = useState('');
   const onChange = (e) => {
     setMessage(e.target.value);
@@ -52,5 +52,3 @@ const Contact = ({ listing }) => {
     </>
   );
 }
-
-export default Contact;
