@@ -1,4 +1,8 @@
 # Home4You - MERN Real Estate Application
+https://home4you.onrender.com/
+
+![Screenshot 2024-01-14 at 16 12 14](https://github.com/Chuuch/MERN-Stack-Real-Estate/assets/78451418/5d798c6c-c4b8-4914-a5fd-6a6468a8b39e)
+
 
 Welcome to the MERN Real Estate Application, an advanced platform that redefines the real estate experience by leveraging the power of MongoDB, Express.js, React.js, Node.js, and Firebase. The application combines cutting-edge technologies to provide a secure, flexible, and modern solution for real estate management.
 
