@@ -10,9 +10,6 @@ dotenv.config();
 
 mongoose
   .connect(process.env.MONGO, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
   })
   .then(() => {
     console.log('Connected to MongoDB!');
